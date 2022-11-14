@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.admin__scroll {
+    height: 588px;
+    overflow: auto;
+}
+
+.admin__order__detail {
+    height: 550px;
+    overflow: auto;
+}

@@ -1,0 +1,113 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@if (Model != null)
+{
+    using (Html.BeginForm("Update", "Giohang", FormMethod.Post))
+    {
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <h2 class="text-center">GIỎ HÀNG</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @{ double Total = 0;}
+                            @foreach (var cart in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="~/Public/img/Product/@cart.Img" alt="">
+                                            <h5>@cart.Name</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            @cart.Price &#8363
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <input name="qty" value="@cart.Qty" type="number" min="1" style="width:20%"/>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            @cart.Amount &#8363
+                                        </td>
+                                        <td class="shoping__cart__item__close text-center">
+                                            <a href="@Url.Action("Del", "Giohang", new { id = cart.Id })"><span class="fa-solid fa-xmark"></span></a>           
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                    Total += cart.Amount;
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="@Url.Action("Index","Trangchu")" class="primary-btn cart-btn">TIẾP TỤC MUA SẮM</a>
+                        <input type="submit" class="primary-btn cart-btn cart-btn-right" name="update" value="CẬP NHẬT" style="border:none">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Mã giảm giá</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Nhập mã giảm giá">
+                                <button type="submit" class="site-btn"><b>ÁP DỤNG</b></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Tổng thanh toán</h5>
+                        <ul>
+                            <li>Giảm giá <span>-- &#8363 </span></li>
+                            <li>Tổng <span>@Total &#8363 </span></li>
+                        </ul>
+                        <a href="@Url.Action("Thanhtoan","Giohang")" class="primary-btn">THANH TOÁN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+}
+else
+{
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <h2 class="text-center">GIỎ HÀNG</h2>
+                        <h4 class="text-center">Chưa có sản phẩm trong giỏ hàng</h4>
+                        <div class="col-lg-12">
+                            <div class="shoping__cart__btns">
+                                <a href="@Url.Action("Index","Trangchu")" class="primary-btn cart-btn">TIẾP TỤC MUA SẮM</a>
+                                <a href="#" class="primary-btn cart-btn cart-btn-right">
+                                    <span class="fa-solid fa-rotate"></span>
+                                    CẬP NHẬT
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+

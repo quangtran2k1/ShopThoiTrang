@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <div class="wrapper">
+                        <div class="row no-gutters">
+                            <div class="col-md-7 d-flex align-items-stretch">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Gửi thắc mắc</h3>
+                                    <div id="form-message-warning" class="mb-4"></div>
+                                    <div id="form-message-success" class="mb-4">
+                                        Cảm ơn bạn đã liên hệ!
+                                    </div>
+                                    <form method="POST" id="contactForm" name="contactForm">
+                                        <div class="row">
+                                            <div class="input__contact col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form__contact" name="name" id="name" placeholder="Họ tên">
+                                                </div>
+                                            </div>
+                                            <div class="input__contact col-md-6">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control form__contact" name="email" id="email" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="input__contact col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form__contact" name="subject" id="subject" placeholder="Tiêu đề">
+                                                </div>
+                                            </div>
+                                            <div class="input__contact col-md-12">
+                                                <div class="form-group">
+                                                    <textarea name="message" class="form-control form__contact" id="message" cols="30" rows="7" placeholder="Nội dung"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="input__contact col-md-12">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn__contact btn btn-primary"><strong>Gửi</strong></button>
+                                                    <div class="submitting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-stretch">
+                                <div class="info-wrap box__contact w-100 p-lg-5 p-4">
+                                    <h3 class="mb-4 mt-md-4">Liên hệ</h3>
+                                    <div class="text__contact dbox w-100 d-flex align-items-start">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa-solid fa-location-dot"></span>
+                                        </div>
+                                        <div class="text pl-3">
+                                            <p><span>&#160 Địa chỉ:</span> 7/46 Mai Trai, Sơn Tây, Hà Nội</p>
+                                        </div>
+                                    </div>
+                                    <div class="text__contact dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa-solid fa-phone"></span>
+                                        </div>
+                                        <div class="text pl-3">
+                                            <p><span>&#160 Số điện thoại:</span> <a href="tel://1234567920">0377 092 001</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="text__contact dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa-solid fa-paper-plane"></span>
+                                        </div>
+                                        <div class="text pl-3">
+                                            <p><span>&#160 Email:</span> <a href="mailto:trannhatquang107@gmail.com">trannhatquang107@gmail.com</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="text__contact dbox w-100 d-flex align-items-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa-solid fa-earth-asia"></span>
+                                        </div>
+                                        <div class="text pl-3">
+                                            <p><span>&#160 Website:</span> <a href="@Url.Action("Index","Trangchu")">G3Triangle.com</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

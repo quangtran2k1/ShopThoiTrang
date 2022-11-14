@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.Category>
+@foreach (var cat in Model)
+{
+    ViewBag.Title = @cat.Name;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+    <section class="featured spad">
+        <div class="container">
+            <hr id="featured" />
+            @using (Html.BeginForm("Search", "Trangchu"))
+            {
+                <div class="search__other">
+                    <input type="text" name="key" required placeholder="Tìm kiếm . . .">
+                    <button type="submit"><span class="fa-solid fa-search"></span></button>
+                </div>
+            }
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text__featured">@cat.Name</h3>
+                </div>
+            </div>
+            <div class="row featured__filter">
+                    @Html.Action("ProductCategory", "Sanpham", new { @catid = cat.Id })
+            </div>
+        </div>
+    </section>
+}
+

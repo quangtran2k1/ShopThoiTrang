@@ -1,0 +1,397 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.Category>
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+@section scripts {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/Public/js/DropDown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script src="~/Public/js/Swiper.js"></script>
+<script src="~/Public/js/main.js"></script>
+<script src="~/Public/js/mixitup.min.js"></script>
+}
+<!-- Drop__Menu Section Begin -->
+<section class="dropdown__menu">
+    <div class="container flex__menu">
+        <div class="col-lg-3">
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected"><i class="fa-solid fa-bars"></i> Loại sản phẩm</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    @foreach (var cats in Model)
+                    {
+                        <li><a href="~/loai-san-pham/@cats.Slug">@cats.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="search">
+                <div class="search__form">
+                    @using (Html.BeginForm("Search", "Trangchu"))
+                    { 
+                    <div class="search__input">
+                        <input type="text" name="key" required placeholder="Tìm kiếm . . .">
+                    </div>
+                    <button type="submit">Tìm kiếm</button>
+                    }
+                </div>
+                <div class="hotline">
+                    <div class="hotline__icon">
+                        <a href="#"><i class="fa-solid fa-phone"></i></a>
+                    </div>
+                    <div class="hotline__text">
+                        <h5>0377 092 001</h5>
+                        <span>Hỗ trợ 24/7</span>
+                    </div>
+                </div>
+            </div>
+            <div class="banner__item">
+                <div class="banner__text">
+                    <span>Sale Off</span>
+                    <h2>Giảm giá 30% <br />cho đơn hàng đầu tiên</h2>
+                    <p>Giao hàng toàn quốc</p>
+                    <a href="#" class="primary-btn">MUA NGAY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container flex__menu">
+        <div class="col-lg-3 sale__support">
+            <div class="sale">
+                <p><i class="fa-solid fa-truck-fast"></i> MIỄN PHÍ VẬN CHUYỂN</p>
+            </div>
+        </div>
+        <div class="col-lg-3 sale__support">
+            <div class="sale">
+                <p><i class="fa-solid fa-headset"></i> HỖ TRỢ 24/7</p>
+            </div>
+        </div>
+        <div class="col-lg-3 sale__support">
+            <div class="sale">
+                <p><i class="fa-solid fa-rotate"></i> HOÀN TIỀN 100%</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Drop__menu Section End -->
+
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container">
+        <hr id="sale-off" />
+        <div class="row">
+            <h3 class="text__categories">SALE OFF</h3>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/ao-khoac-kaki-hai-lop-mangto.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Áo khoác kaki hai lớp mangto</a></h6>
+                                <h5>425,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/ao-thun-nam-giarasv.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Áo thun nam giarasv</a></h6>
+                                <h5>350,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/ao-vest-cong-so-thoi-trang.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Áo vest công sở</a></h6>
+                                <h5>375,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/dam-thoi-trang-cong-so.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Đầm thời trang công sở</a></h6>
+                                <h5>250,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/dong-ho-nam-economicxi.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Đồng hồ nam Economicxi</a></h6>
+                                <h5>550,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/giay-cao-got-nu-cao-cap.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Giày cao gót nữ</a></h6>
+                                <h5>300,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/giay-da-nam-cao-cap.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Giày da nam cao cấp</a></h6>
+                                <h5>725,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/giay-da-nam-co-thap-buoc-day-ca-tinh.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Giày da nam cổ thấp</a></h6>
+                                <h5>550,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="sale__item">
+                            <div class="sale__item__pic">
+                                <img src="~/Public/img/Product/quan-jean-nam.jpg" />
+                                <ul class="sale__item__pic__hover">
+                                    <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="sale__item__text">
+                                <h6><a href="#">Quần jean nam</a></h6>
+                                <h5>450,000 &#8363</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+
+<!-- Featured Section Begin -->
+<section class="featured spad">
+    <div class="container">
+        <hr id="featured" />
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text__featured">NỔI BẬT</h3>
+            </div>
+            <div class="featured__controls">
+                <ul>
+                    <li class="active" data-filter="*">Tất cả</li>
+                    <li data-filter=".nam">Nam</li>
+                    <li data-filter=".nu">Nữ</li>
+                    <li data-filter=".giay">Giày</li>
+                    <li data-filter=".phukien">Phụ kiện</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row featured__filter">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nam">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/ao-khoac-kaki-hai-lop-mangto.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Áo khoác kaki hai lớp mangto</a></h6>
+                        <h5>425,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nam">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/ao-thun-nam-giarasv.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Áo thun nam giarasv</a></h6>
+                        <h5>350,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nu">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/ao-vest-cong-so-thoi-trang.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Áo vest công sở</a></h6>
+                        <h5>375,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nu">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/dam-thoi-trang-cong-so.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Đầm thời trang công sở</a></h6>
+                        <h5>250,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nam nu phukien">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/dong-ho-nam-economicxi.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#"> Đồng hồ nam Economicxi</a></h6>
+                        <h5>550,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix giay nu">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/giay-cao-got-nu-cao-cap.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Giày cao gót nữ</a></h6>
+                        <h5>300,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nam giay">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/giay-da-nam-cao-cap.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Giày da nam cao cấp</a></h6>
+                        <h5>725,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix nam giay">
+                <div class="featured__item">
+                    <div class="featured__item__pic">
+                        <img src="~/Public/img/Product/giay-da-nam-co-thap-buoc-day-ca-tinh.jpg" />
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+                        <h6><a href="#">Giày da nam cổ thấp</a></h6>
+                        <h5>550,000 &#8363</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Featured Section End -->
+
+

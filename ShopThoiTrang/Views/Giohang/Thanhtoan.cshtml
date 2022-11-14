@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "Thanhtoan";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@{ 
+    var user = ViewBag.user;
+}
+
+@using (Html.BeginForm("Dathang", "Giohang", FormMethod.Post))
+{
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Chi tiết hóa đơn</h4>
+                <div class="form-control">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="checkout__input form-control">
+                                <p>Họ tên</p>
+                                <input class="form-control" type="text" readonly name="name" value="@user.FullName">
+                            </div>
+                            <div class="checkout__input form-control">
+                                <p>Địa chỉ</p>
+                                <input class="form-control" type="text" readonly name="addr" value="@user.Address">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input form-control">
+                                        <p>Điện thoại</p>
+                                        <input class="form-control" type="text" readonly  name="phone" value="@user.Phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input form-control">
+                                        <p>Email</p>
+                                        <input class="form-control" type="email" readonly name="email" value="@user.Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input form-control">
+                                <p>Lời nhắn</p>
+                                <textarea type="text" name="note" class="form-control" placeholder="Lưu ý cho cửa hàng."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Đơn hàng</h4>
+                                <div class="order__table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="shoping__product">Sản phẩm</th>
+                                                <th class="text-center">Số lượng</th>
+                                                <th class="text-end">Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        @{ double Total = 0;}
+                                        @foreach (var cart in Model)
+                                        {
+                                            <tbody>
+                                                <tr>
+                                                    <td class="shoping__cart__item">
+                                                        <h5>@cart.Name</h5>
+                                                    </td>
+                                                    <td class="shoping__cart__quantity text-center">
+                                                        @cart.Qty
+                                                    </td>
+                                                    <td class="shoping__cart__total text-end">
+                                                        @cart.Amount &#8363
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            Total += cart.Amount;
+                                        }
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12 order__submit">
+                                    <table>
+                                        <tr>
+                                            <td><b>Tổng tiền hàng</b></td>
+                                            <td class="text-end">@Total &#8363 </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Giảm giá</b></td>
+                                            <td class="text-end">-- &#8363 </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h4><b>Tổng thanh toán</b></h4></td>
+                                            <td class="text-end"><h4>@Total &#8363 </h4></td>
+                                        </tr>
+                                    </table>
+                                    <button type="submit" class="primary-btn btn__order">ĐẶT HÀNG</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

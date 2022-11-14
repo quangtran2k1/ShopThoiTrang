@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.OrderDetailLink>
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card admin__order__detail">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">Chi tiết đơn hàng</strong>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="@Url.Action("Index", "Order")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="width:20px;" class="text-center">#</th>
+                    <th style="width:100px;" class="text-center">Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Mã sp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ double Total = 0; }
+                @foreach (var pro in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input name="checkId" type="checkbox" />
+                        </td>
+                        <td>
+                            <img src="~/Public/img/Product/@pro.ProductImg" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;" />
+                        </td>
+                        <td>@pro.ProductName</td>
+                        <td>@pro.Price &#8363 </td>
+                        <td>@pro.Qty</td>
+                        <td>@pro.Amount</td>
+                        <td class="text-center">@pro.ProductId</td>
+                    </tr>
+                    Total += pro.Amount;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-9 col-md-6">
+        <h4 class="text-end text-danger"><strong>TỔNG THANH TOÁN:</strong></h4>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <h4 class="text-center text-danger"><strong>@Total &#8363 </strong>  </h4>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Public/css/LayoutUser.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    @RenderSection("header", required: false)
+    <title>G3 Triangle | @ViewBag.Title</title>
+    <link rel="icon" type="image/x-icon" href="~/Public/img/favicon.ico" />
+    <!-- import icon font awesome -->
+    <!-- Import thư viện JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // kéo xuống khoảng cách 500px thì xuất hiện nút Top-up
+        var offset = 500;
+        // thời gian di trượt 0.75s ( 1000 = 1s )
+        var duration = 750;
+        $(function(){
+        $(window).scroll(function () {
+        if ($(this).scrollTop() > offset)
+        $('#top-up').fadeIn(duration);else
+        $('#top-up').fadeOut(duration);
+        });
+        $('#top-up').click(function () {
+        $('body,html').animate({scrollTop: 0}, duration);
+        });
+        });
+    </script>
+</head>
+
+<body>
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa-solid fa-envelope"></i> trannhatquang107@gmail.com</li>
+                            <li><i class="fa-solid fa-phone"></i> 0377092001</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                        </div>
+                        <div class="header__top__right__auth">
+                            @if (Session["User"] == "")
+                            {
+                                <a href="@Url.Action("Login", "User")"><i class="fa fa-user"></i> Đăng nhập</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Index", "User")">@Session["User"].ToString()</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Menu", "Module")
+</header>
+<!-- Header Section End -->
+
+@RenderBody()
+
+<!-- Footer Section Begin -->
+<footer class="footer spad">
+    <div title="Về đầu trang" id="top-up">
+        <i class="fas fa-arrow-circle-up"></i>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__about__logo">
+                        <a href="@Url.Action("Index")"><img src="~/Public/img/logo.png" /></a>
+                    </div>
+                    <ul>
+                        <li>Địa chỉ: 7/46 Mai Trai, Sơn Tây, Hà Nội</li>
+                        <li>Điện thoại: 0377092001</li>
+                        <li>Email: trannhatquang107@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>Useful Links</h6>
+                    <ul>
+                        <li><a href="#">Thôn tin về G3Triangle</a></li>
+                        <li><a href="#">G3Triangle Blog</a></li>
+                        <li><a href="#">Thanh toán</a></li>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Trả hàng hoàn tiền</a></li>
+                        <li><a href="#">Vận chuyển</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Trung tâm trợ giúp</a></li>
+                        <li><a href="#">Điều khoản</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="@Url.Action("Contact","About")">Liên hệ</a></li>
+                        <li><a href="#">Chăm sóc khách hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="footer__widget">
+                    <h6>Đăng ký tham gia chương trình</h6>
+                    <p>Nhận thông tin chương trình và ưu đãi của cửa hàng qua mail</p>
+                    <form action="#">
+                        <input type="text" placeholder="Nhập mail của bạn">
+                        <button type="submit" class="site-btn">Đăng ký</button>
+                    </form>
+                    <div class="footer__widget__social">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer__copyright">
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | Website được xây dựng bởi <a href="https://www.facebook.com/fb.of.quang">Quang</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+@RenderSection("footer", required: false)
+@RenderSection("scripts", required: false)
+</body>
+</html>
