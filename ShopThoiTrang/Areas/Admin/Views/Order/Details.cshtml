@@ -4,15 +4,25 @@
     ViewBag.Title = "Chi tiết đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 <div class="card admin__order__detail">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
                 <strong class="text-uppercase text-danger">Chi tiết đơn hàng</strong>
             </div>
-            <div class="col-md-6 text-end">
-                <a href="@Url.Action("Index", "Order")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Index", "Order")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
             </div>
         </div>
     </div>
@@ -54,7 +64,7 @@
 </div>
 <div class="row">
     <div class="col-lg-9 col-md-6">
-        <h4 class="text-end text-danger"><strong>TỔNG THANH TOÁN:</strong></h4>
+        <h4 class="text-right text-danger"><strong>TỔNG THANH TOÁN:</strong></h4>
     </div>
     <div class="col-lg-3 col-md-6">
         <h4 class="text-center text-danger"><strong>@Total &#8363 </strong>  </h4>

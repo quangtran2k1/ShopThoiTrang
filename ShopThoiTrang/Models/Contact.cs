@@ -12,15 +12,15 @@ namespace ShopThoiTrang.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập Họ tên")]
         public string FullName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập Email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập Số điện thoại")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập Tiêu đề")]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập Nội dung")]
         public string Content { get; set; }
         public int? Created_By { get; set; }
         public DateTime? Created_At { get; set; }

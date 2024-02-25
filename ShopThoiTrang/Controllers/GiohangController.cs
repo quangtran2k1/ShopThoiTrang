@@ -16,7 +16,7 @@ namespace ShopThoiTrang.Controllers
         {
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
             }
             List<CartItem> listcart = xcart.GetCart();
             return View("Index",listcart);
@@ -26,11 +26,13 @@ namespace ShopThoiTrang.Controllers
         {
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
+            }else
+            {
+                Product product = db.Products.Find(id);
+                CartItem cartitem = new CartItem(product.Id, product.Name, product.Img, product.Price, 1);
+                List<CartItem> listcart = xcart.Add(cartitem, id);
             }
-            Product product = db.Products.Find(id);
-            CartItem cartitem = new CartItem(product.Id, product.Name, product.Img, product.Price, 1);
-            List<CartItem> listcart = xcart.Add(cartitem,id);
             return RedirectToAction("Index","Giohang");
         }
 
@@ -38,24 +40,32 @@ namespace ShopThoiTrang.Controllers
         {
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
+            }else
+            {
+                xcart.DelCart(id);
             }
-            xcart.DelCart(id);
             return RedirectToAction("Index", "Giohang");
         }
 
         public ActionResult Update(FormCollection form)
         {
+            var test = "";
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
             }
-            if (!string.IsNullOrEmpty(form["update"]))
+            else
             {
-                var listqty = form["qty"];
-                var listarr = listqty.Split(',');
-                xcart.UpdateCart(listarr);
+                if (!string.IsNullOrEmpty(form["update"]))
+                {
+                    var listqty = form["qty"];
+                    test = listqty;
+                    var listarr = listqty.Split(',');
+                    xcart.UpdateCart(listarr);
+                }
             }
+        
             return RedirectToAction("Index", "Giohang");
         }
 
@@ -63,9 +73,13 @@ namespace ShopThoiTrang.Controllers
         {
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
             }
             int id = int.Parse(Session["UserID"].ToString());
+            if (System.Web.HttpContext.Current.Session["Address"].Equals(""))
+            {
+                System.Web.HttpContext.Current.Response.Redirect("~/user/edit/" + Session["UserID"]);
+            }
             User user = db.Users.Find(id);
             ViewBag.user = user;
             List<CartItem> listcart = xcart.GetCart();
@@ -76,7 +90,7 @@ namespace ShopThoiTrang.Controllers
         {
             if (System.Web.HttpContext.Current.Session["User"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/User/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/user/login");
             }
             int userid = int.Parse(Session["UserID"].ToString());
             User user = db.Users.Find(userid);
@@ -87,6 +101,9 @@ namespace ShopThoiTrang.Controllers
             order.Phone = user.Phone;
             order.Email = user.Email;
             order.Note = note;
+            order.Created_At = DateTime.Now;
+            order.Updated_At = DateTime.Now;
+            order.Updated_By = userid;
             order.Status = 1;
             db.Orders.Add(order);
             if (db.SaveChanges() == 1)
@@ -105,7 +122,15 @@ namespace ShopThoiTrang.Controllers
                 }
             }
             Session["MyCart"] = "";
-            return Redirect("~/Giohang/Index");
+            return Redirect("~/cart");
+        }
+
+        public ActionResult HuyDon(int id)
+        {
+            Order order = db.Orders.Find(id);
+            db.Orders.Remove(order);
+            db.SaveChanges();
+            return Redirect("~/user");
         }
     }
 }

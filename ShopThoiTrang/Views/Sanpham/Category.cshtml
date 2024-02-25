@@ -3,23 +3,28 @@
 {
     ViewBag.Title = @cat.Name;
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
-    <section class="featured spad">
+    <section class="featured spad main__section">
         <div class="container">
-            <hr id="featured" />
-            @using (Html.BeginForm("Search", "Trangchu"))
-            {
-                <div class="search__other">
-                    <input type="text" name="key" required placeholder="Tìm kiếm . . .">
-                    <button type="submit"><span class="fa-solid fa-search"></span></button>
-                </div>
-            }
             <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="text__featured">@cat.Name</h3>
+                <div class="col-lg-3">
+                    @Html.Action("SidebarMenu", "Module")
                 </div>
-            </div>
-            <div class="row featured__filter">
-                    @Html.Action("ProductCategory", "Sanpham", new { @catid = cat.Id })
+                <div class="col-lg-9">
+                    @Html.Action("Search", "Module")
+                    <div class="row">
+                        <div class="col-lg-12 mt-2">
+                            <h3 class="text__featured">SẢN PHẨM</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 class="text__featured">@cat.Name</h3>
+                        </div>
+                    </div>
+                    <div class="row featured__filter">
+                        @Html.Action("ProductCategory", "Sanpham", new { @catid = cat.Id })
+                    </div>
+                </div>
             </div>
         </div>
     </section>

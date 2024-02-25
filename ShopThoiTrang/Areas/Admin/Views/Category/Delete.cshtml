@@ -4,6 +4,17 @@
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -13,8 +24,8 @@
                 <div class="col-md-6">
                     <strong class="text-uppercase text-danger">Xác nhận xóa loại sản phẩm</strong>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="@Url.Action("Index", "Category")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
                     <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
                 </div>
             </div>

@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập</title>
+    <link rel="icon" type="image/x-icon" href="~/Public/img/favicon.ico" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+    <link href="~/Public/css/icheck-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Public/css/adminlte.min.css" rel="stylesheet" />
+    <style>
+        img {
+            width: 15%;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <img src="~/Public/img/Group3.png" /><h4><strong>ĐĂNG NHẬP</strong></h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("DoLogin", "NguoiDung", FormMethod.Post))
+                {
+                    @Html.Raw(ViewBag.Error)
+                    <div class="input-group mb-3">
+                        <input type="text" name="username" required class="form-control" placeholder="Tên đăng nhập hoặc email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa-solid fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" required class="form-control" placeholder="Mật khẩu">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa-solid fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success btn-block">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                }
+            <div class="social-auth-links text-center mt-2 mb-3">
+                <a href="#" class="btn btn-block btn-primary">
+                    <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-danger">
+                    <i class="fa-brands fa-google-plus"></i> Đăng nhập bằng Google+
+                </a>
+            </div>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href="forgot-password.html">Quên mật khẩu</a>
+            </p>
+            <p class="mb-0">
+                Bạn chưa có tài khoản?
+                <a href="@Url.Action("Register","User")" class="text-center text-danger"> Đăng ký</a>
+            </p>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+<!-- jQuery -->
+<script src="~/Public/js/jquery.min.js"></script>
+<script src="~/Public/js/adminlte.min.js"></script>
+<script src="~/scripts/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,142 @@
+﻿@model ShopThoiTrang.Models.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký</title>
+    <link rel="icon" type="image/x-icon" href="~/Public/img/favicon.ico" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+    <link href="~/Public/css/icheck-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Public/css/adminlte.min.css" rel="stylesheet" />
+    <style>
+        img {
+            width: 15%;
+        }
+        .input-group{
+            display: block;
+            width: 86%;
+        }
+        .icon___register {
+            position: absolute;
+            margin: -38px 0 0 275px;
+        }
+        .icon___register>div{
+            display: block;
+            width: 45px;
+        }
+    </style>
+</head>
+<body class="hold-transition register-page">
+@using (Html.BeginForm("Register", "NguoiDung", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="register-box">
+            <div class="card card-outline card-primary">
+                <div class="card-header text-center">
+                    <img src="~/Public/img/Group3.png" /><h4><strong>ĐĂNG KÝ</strong></h4>
+                </div>
+                <div class="card-body">
+                    @Html.Raw(ViewBag.Error)
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên đăng nhập" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-user"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ và tên" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-address-card"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", @placeholder = "Email" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-envelope"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div> 
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Số điện thoại" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-phone"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Mật khẩu" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-lock"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.rePassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Nhập lại mật khẩu" } })
+                            <div class="input-group-append icon___register">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-lock"></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.rePassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <label for="agreeTerms">
+                                    Bạn đồng ý với <a href="https://dienmaytot.org/wp-content/uploads/2021/04/5-dieu-bac-ho-day.jpg">Điều khoản</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-success btn-block">Đăng ký</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <p class="mb-0">
+                        Bạn đã có tài khoản 
+                        <a href="@Url.Action("Login", "NguoiDung")" class="text-center text-danger">Đăng nhập</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+}
+    <!-- /.register-box -->
+    <script src="~/Public/js/jquery.min.js"></script>
+    <script src="~/Public/js/adminlte.min.js"></script>
+    <script src="~/scripts/bootstrap.bundle.min.js"></script>
+</body>
+</html>

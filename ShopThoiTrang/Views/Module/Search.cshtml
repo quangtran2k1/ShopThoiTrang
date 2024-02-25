@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="search">
+    <div class="search__form">
+        @using (Html.BeginForm("Search", "Trangchu"))
+        {
+            <div class="search__input">
+                <input type="text" name="key" required placeholder="Tìm kiếm . . .">
+            </div>
+                    <button type="submit">Tìm kiếm</button>
+        }
+    </div>
+    <div class="hotline">
+        <div class="hotline__icon">
+            <a href="tel:0377 092 001"><i class="fa-solid fa-phone"></i></a>
+        </div>
+        <div class="hotline__text">
+            <h5>0377 092 001</h5>
+            <span>Hỗ trợ 24/7</span>
+        </div>
+    </div>
+</div>
+

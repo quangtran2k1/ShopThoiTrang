@@ -1,0 +1,23 @@
+﻿@if (ViewBag.Modal != null)
+{
+    foreach (var item in ViewBag.Modal)
+    {
+        <div class="modal fade" id="popupSpecial" tabindex="-1" aria-labelledby="popupSpecialExample" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-body modal__event">
+                        <button type="button" class="close position-absolute" style="right: 20px; font-size: 45px;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <a href="@item.Link"><img src="~/Public/img/Slider/@item.Img" class="w-100 h-100" style="object-fit: cover;" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+	$(window).load(function(){
+		$('#popupSpecial').modal('show');
+	});
+    </script>
+}

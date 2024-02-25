@@ -26,8 +26,8 @@ namespace ShopThoiTrang.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-LEAR9IR\\SQLEXPRESS;Initial Catalog=QLNhanVien;Persist Securit" +
-            "y Info=True;User ID=sa;Password=12345678")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-LEAR9IR;Initial Catalog=Sales_DW;Persist Security Info=True;U" +
+            "ser ID=sa;Password=12345678")]
         public string ChuoiKN {
             get {
                 return ((string)(this["ChuoiKN"]));

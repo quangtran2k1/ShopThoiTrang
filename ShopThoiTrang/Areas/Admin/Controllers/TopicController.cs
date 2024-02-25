@@ -45,6 +45,8 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
         // GET: Admin/Topic/Create
         public ActionResult Create()
         {
+            ViewBag.ListTopic = new SelectList(db.Topics.ToList(), "Id", "Name", 0);
+            ViewBag.ListOrderTopic = new SelectList(db.Topics.ToList(), "Orders", "Name", 0);
             return View();
         }
 
@@ -53,16 +55,27 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Slug,ParentId,Orders,Detail,Metakey,Metadesc,Created_By,Created_At,Updated_By,Updated_At,Status")] Topic topic)
+        public ActionResult Create(Topic topic)
         {
             if (ModelState.IsValid)
             {
+                if(topic.ParentId == null)
+                {
+                    topic.ParentId = 0;
+                }
+                string slug = XString.Str_Slug(topic.Name);
+                topic.Slug = slug;
+                topic.Created_At = DateTime.Now;
+                topic.Created_By = int.Parse(Session["UserID"].ToString());
+                topic.Updated_At = DateTime.Now;
+                topic.Updated_By = int.Parse(Session["UserID"].ToString());
                 db.Topics.Add(topic);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Topic");
             }
-
-            return View(topic);
+            ViewBag.ListTopic = new SelectList(db.Topics.ToList(), "Id", "Name", 0);
+            ViewBag.ListOrderTopic = new SelectList(db.Topics.ToList(), "Orders", "Name", 0);
+            return View();
         }
 
         // GET: Admin/Topic/Edit/5
@@ -77,6 +90,8 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ListTopic = new SelectList(db.Topics.ToList(), "Id", "Name", 0);
+            ViewBag.ListOrderTopic = new SelectList(db.Topics.ToList(), "Orders", "Name", 0);
             return View(topic);
         }
 
@@ -85,14 +100,24 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Slug,ParentId,Orders,Detail,Metakey,Metadesc,Created_By,Created_At,Updated_By,Updated_At,Status")] Topic topic)
+        public ActionResult Edit(Topic topic)
         {
             if (ModelState.IsValid)
             {
+                if (topic.ParentId == null)
+                {
+                    topic.ParentId = 0;
+                }
+                string slug = XString.Str_Slug(topic.Name);
+                topic.Slug = slug;
+                topic.Updated_At = DateTime.Now;
+                topic.Updated_By = int.Parse(Session["UserID"].ToString());
                 db.Entry(topic).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ListTopic = new SelectList(db.Topics.ToList(), "Id", "Name", 0);
+            ViewBag.ListOrderTopic = new SelectList(db.Topics.ToList(), "Orders", "Name", 0);
             return View(topic);
         }
 

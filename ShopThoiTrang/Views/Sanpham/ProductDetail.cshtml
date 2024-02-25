@@ -10,7 +10,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
-                        <img class="product__details__pic__item--large"
+                        <img class="product__details__pic__item--large w-100"
                              src="~/Public/img/Product/@pro.Img" alt="">
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <a href="@Url.Action("Add","Giohang",new {@id = pro.Id})" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
                     <a href="#" class="heart-icon"><span class="fa-solid fa-heart"></span></a>
                     <ul>
-                        @if (@Session["Address"] != "")
+                        @if (Session["Address"] != "")
                         {
                             <li><b>Vận chuyển tới:</b>&#160 <span>@Session["Address"]</span></li>
                             <li><b>Phí vận chuyển:</b>&#160 <span>20000 &#8363</span></li>

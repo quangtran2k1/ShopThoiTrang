@@ -13,7 +13,7 @@ namespace ShopThoiTrang.Controllers
         // GET: Sanpham
         public ActionResult Index()
         {
-            var listProduct = db.Products.Where(m => m.Status == 1).OrderByDescending(m => m.Created_At).ToList();
+            var listProduct = db.Products.OrderByDescending(m => m.Created_At).ToList();
             return View(listProduct);
         }
 
@@ -25,13 +25,13 @@ namespace ShopThoiTrang.Controllers
 
         public ActionResult ProductCategory(int catid)
         {
-            var listPro = db.Products.Where(m => m.Status == 1 && m.CatId == catid).OrderByDescending(m => m.Created_At).ToList();
+            var listPro = db.Products.Where(m => m.CatId == catid).OrderByDescending(m => m.Created_At).ToList();
             return View("ProductCategory",listPro);
         }
 
         public ActionResult ProductDetail(string slug)
         {
-            var listPro = db.Products.Where(m => m.Status == 1 && m.Slug == slug).OrderByDescending(m => m.Created_At).ToList();
+            var listPro = db.Products.Where(m => m.Slug == slug).OrderByDescending(m => m.Created_At).ToList();
             return View("ProductDetail", listPro);
         }
 

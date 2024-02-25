@@ -4,7 +4,17 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 @using (Html.BeginForm("Create","Product",FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -15,9 +25,9 @@
                 <div class="col-md-6">
                     <strong class="text-uppercase text-danger">Thêm sản phẩm</strong>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="@Url.Action("Index", "Product")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
-                    <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
+                    <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-floppy-disk"></i> Lưu</button>
                 </div>
             </div>
         </div>
@@ -71,7 +81,7 @@
                         <input type="file" name="fileimg" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Trạng thái</label>
+                        <label>Đặc biệt</label>
                         @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Chưa triển khai", Value = "2" }, new SelectListItem { Text = "Triển khai", Value = "1" } }, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>

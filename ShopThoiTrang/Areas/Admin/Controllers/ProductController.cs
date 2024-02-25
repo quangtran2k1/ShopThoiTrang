@@ -161,20 +161,19 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
                 product.Updated_By = int.Parse(Session["UserID"].ToString());
                 //Hình ảnh
                 var Img = Request.Files["fileimg"];
-                string[] FileExtention = { ".jpg", ".png", ".jpeg" };
+                string[] FileExtention = { ".jpg", ".png" };
                 if (Img.ContentLength != 0)
                 {
                     if (FileExtention.Contains(Img.FileName.Substring(Img.FileName.LastIndexOf("."))))
                     {
+                        string oldImgPath = Path.Combine(Server.MapPath("~/Public/img/Product/"), product.Img);
+                        if (System.IO.File.Exists(oldImgPath))
+                        {
+                            System.IO.File.Delete(oldImgPath);
+                        }
+
                         //Upload file
                         string imgName = slug + Img.FileName.Substring(Img.FileName.LastIndexOf("."));
-                        //Xóa hình
-                        String DelPath = Path.Combine(Server.MapPath("~/Public/img/Product/"), product.Img);
-                        if (System.IO.File.Exists(DelPath))
-                        {
-                            System.IO.File.Delete(DelPath);
-                        }
-                        //
                         product.Img = imgName; //Lưu vào CSDL
                         string PathImg = Path.Combine(Server.MapPath("~/Public/img/Product/"), imgName);
                         Img.SaveAs(PathImg); //Lưu file lên server
@@ -182,7 +181,7 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
                 }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Product");
             }
             ViewBag.ListCat = new SelectList(db.Categorys.ToList(), "Id", "Name", 0);
             return View(product);

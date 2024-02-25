@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+}
+
+<ul class="list-group">
+    <li class="list-group-item active" style="background-color: #e47ebc; border: #e47ebc;" aria-current="true"><i class="fa-solid fa-bars"></i>&#160 Danh mục sản phẩm</li>
+    @foreach (var cats in ViewBag.listCat)
+    {
+        <li class="list-group-item"><a href="~/category/@cats.Slug">@cats.Name</a></li>
+    }
+</ul>
+

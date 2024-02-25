@@ -86,6 +86,10 @@ img {
     display: flex;
 }
 
+.main__section{
+    margin-top: 158px;
+}
+
 /*Header*/
 .header {
     position: fixed;
@@ -422,7 +426,7 @@ img {
 /*Search*/
 
 .search__form {
-    width: 80%;
+    width: 75%;
     float: left;
 }
 
@@ -431,7 +435,7 @@ img {
 }
 
 .search__input {
-    width: 75%;
+    width: 70%;
     border: 0.5px double #d1cccc;
     margin-left: 7px;
 }
@@ -475,7 +479,7 @@ img {
 }
 
 .hotline {
-    width: 20%;
+    width: 25%;
     float: right;
     display: flex;
 }
@@ -787,16 +791,16 @@ img {
 }
 
 .featured__item__pic {
-	height: 300px;
-    width: 300px;
+	height: 220px;
+    width: 100%;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
 }
 
 .featured__item__pic img {
-    height: 300px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 

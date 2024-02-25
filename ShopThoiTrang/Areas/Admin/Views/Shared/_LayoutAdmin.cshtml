@@ -1,82 +1,244 @@
 ﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>@Page.Title</title>
-        <link rel="icon" type="image/x-icon" href="~/Public/img/favicon.ico" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
-        <script src="~/scripts/bootstrap.bundle.min.js"></script>
-        <link href="~/Public/css/all.min.css" rel="stylesheet" />
-        @RenderSection("head", required: false)
-    </head>
-    <body>
-        <section class="clearfix header bg-danger">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="@Url.Action("Index","Dashboard")"><img src="~/Public/img/logo.png" style="width:150px;"></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sản phẩm
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Product")">Danh sách sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Create","Product")">Thêm sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Category")">Danh sách loại sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Create","Category")">Thêm loại sản phẩm</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Bài viết
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Post")">Danh sách bài viết</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Create","Post")">Thêm bài viết</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Topic")">Danh sách chủ đề</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Create","Topic")">Thêm chủ đề</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Đơn hàng
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Order")">Quản lý đơn hàng</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">@Session["UserAdmin"].ToString()</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="@Url.Action("Logout","Auth")">Đăng xuất</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </section>
-        <section class="clearfix maincontent">
-            <div class="container-fluid py-3">
-                @RenderBody()
-            </div>
-        </section>
-        <section class="clearfix footer bg-danger">
-            <div class="container-fluid text-white text-center py-3">
-                Thiết kế bởi: Trần Nhật Quang
-            </div>
-        </section>
+<html lang="en">
 
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin - @ViewBag.Title</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Public/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="~/Public/img/favicon.ico" />
+
+    <!-- Custom styles for this template-->
+    <link href="~/Public/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    @RenderSection("head", required: false)
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Dashboard")">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index","Dashboard")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Sản phẩm
+            </div>
+
+            <!-- Nav Item - Category Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
+                   aria-expanded="true" aria-controls="collapseCategory">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Loại sản phẩm</span>
+                </a>
+                <div id="collapseCategory" class="collapse" aria-labelledby="headingCategory" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","Category")">Danh sách</a>
+                        <a class="collapse-item" href="@Url.Action("Create","Category")">Loại sản phẩm mới</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Product Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                   aria-expanded="true" aria-controls="collapseProduct">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Sản phẩm</span>
+                </a>
+                <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","Product")">Danh sách</a>
+                        <a class="collapse-item" href="@Url.Action("Create","Product")">Sản phẩm mới</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Bài viết
+            </div>
+
+            <!-- Nav Item - Topic Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTopic"
+                   aria-expanded="true" aria-controls="collapseTopic">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Chủ đề</span>
+                </a>
+                <div id="collapseTopic" class="collapse" aria-labelledby="headingTopic" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","Topic")">Danh sách</a>
+                        <a class="collapse-item" href="@Url.Action("Create","Topic")">Chủ đề mới</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Post Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePost"
+                   aria-expanded="true" aria-controls="collapsePost">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Bài viết</span>
+                </a>
+                <div id="collapsePost" class="collapse" aria-labelledby="headingPost" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","Post")">Danh sách</a>
+                        <a class="collapse-item" href="@Url.Action("Create","Post")">Bài viết mới</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Users -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","User")">
+                    <i class="fas fa-users"></i>
+                    <span>Tài khoản</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Order -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Order")">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Đơn hàng</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Slider -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Slider")">
+                    <i class="fas fa-file"></i>
+                    <span>Slider</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Thống kê</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="~/Public/admin/img/undraw_rocket.svg" alt="...">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                @Html.Action("Index", "Menu")
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; G3Triangle <script>document.write(new Date().getFullYear());</script></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Thoát</button>
+                    <a class="btn btn-primary" href="@Url.Action("Logout","Auth")">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
         @RenderSection("footer", required: false)
-    </body>
+        @RenderSection("scripts", required: false)
+</body>
+
 </html>

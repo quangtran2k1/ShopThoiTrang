@@ -51,3 +51,6 @@ D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\PagedList.dll
 D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\PagedList.Mvc.dll
 D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\PagedList.xml
 D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\PagedList.Mvc.xml
+D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\obj\Debug\ShopThoiTrang.csprojResolveAssemblyReference.cache
+D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\Newtonsoft.Json.dll
+D:\Code\CSharp\ShopThoiTrang\ShopThoiTrang\bin\Newtonsoft.Json.xml

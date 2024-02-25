@@ -4,6 +4,17 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,9 +25,9 @@
                 <div class="col-md-6">
                     <strong class="text-uppercase text-danger">Thêm loại sản phẩm</strong>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="@Url.Action("Index", "Category")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
-                    <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
+                    <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-floppy-disk"></i> Lưu</button>
                 </div>
             </div>
         </div>
@@ -47,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <label>Sắp xếp</label>
-                        @Html.DropDownListFor(model => model.Orders, (SelectList)ViewBag.ListCat, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.Orders, (SelectList)ViewBag.ListOrder, "--Chọn vị trí--", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Orders, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">

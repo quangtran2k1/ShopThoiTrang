@@ -4,12 +4,25 @@
     ViewBag.Title = "Danh sách đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 <div class="card admin__scroll">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
                 <strong class="text-uppercase text-danger">Danh sách đơn hàng</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Trash","Order")" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Đã giao</a>
             </div>
         </div>
     </div>
@@ -19,11 +32,11 @@
                 <tr>
                     <th style="width:20px;" class="text-center">#</th>
                     <th style="width:250px">Họ và tên</th>
-                    <th style="width:400px">Họ và tên</th>
+                    <th style="width:200px">Địa chỉ</th>
                     <th style="width:120px">Sđt</th>
-                    <th style="width:300px">Email</th>
+                    <th style="width:250px">Email</th>
                     <th>Note</th>
-                    <th style="width:100px;" class="text-center">Chức năng</th>
+                    <th style="width:130px;" class="text-center">Chức năng</th>
                     <th style="width:20px;" class="text-center">ID</th>
                 </tr>
             </thead>
@@ -40,8 +53,8 @@
                         <td>@info.Email</td>
                         <td>@info.Note</td>
                         <td class="text-center">
-                            <a href="@Url.Action("Details","Order",new {@id = info.Id})" class="btn btn-sm btn-warning"><i class="fa-solid fa-eye"></i></a>
-                            <a href="@Url.Action("Delete","Order",new {@id = info.Id})" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a href="@Url.Action("Details","Order",new {@id = info.Id})" class="btn btn-sm btn-warning"><i class="fas fa-eye"></i></a>
+                            <a href="@Url.Action("DelTrash","Order",new {@id = info.Id})" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
                         </td>
                         <td class="text-center">@info.Id</td>
                     </tr>

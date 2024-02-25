@@ -1,18 +1,28 @@
 ﻿@model IEnumerable<ShopThoiTrang.Models.Topic>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trash";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 <div class="card admin__scroll">
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
-                <strong class="text-uppercase text-danger">Loại sản phẩm đã xóa</strong>
+                <strong class="text-uppercase text-danger">Chủ đề đã xóa</strong>
             </div>
-            <div class="col-md-6 text-end">
-                <a href="@Url.Action("Index","Topic")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Index","Topic")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
             </div>
         </div>
     </div>
@@ -36,13 +46,13 @@
                         </td>
                         <td>@item.Name</td>
                         <td>
-                            <a href="~/san-pham/@item.Slug">
+                            <a href="~/@item.Slug">
                                 @item.Slug
                             </a>
                         </td>
                         <td class="text-center">
-                            <a href="@Url.Action("Restore","Topic",new {@id = item.Id})" class="btn btn-sm btn-info"><i class="fa-solid fa-rotate-left"></i></a>
-                            <a href="@Url.Action("Delete","Topic",new {@id = item.Id})" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a href="@Url.Action("Restore","Topic",new {@id = item.Id})" class="btn btn-sm btn-info"><i class="fas fa-rotate-left"></i></a>
+                            <a href="@Url.Action("Delete","Topic",new {@id = item.Id})" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
 
                         </td>
                         <td class="text-center">@item.Id</td>

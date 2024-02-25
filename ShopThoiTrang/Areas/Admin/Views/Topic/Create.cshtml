@@ -4,6 +4,17 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -12,10 +23,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6">
-                    <strong class="text-uppercase text-danger">Thêm loại sản phẩm</strong>
+                    <strong class="text-uppercase text-danger">Thêm chủ đề</strong>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="@Url.Action("Index", "Topic")" class="btn btn-sm btn-success"><i class="fa-solid fa-arrow-left"></i> Quay về danh sách</a>
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Index", "Topic")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
                     <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
                 </div>
             </div>
@@ -24,7 +35,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label>Loại sản phẩm</label>
+                        <label>Tên chủ đề</label>
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
@@ -42,17 +53,17 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>ParentID</label>
-                        @Html.EditorFor(model => model.ParentId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.ParentId, (SelectList)ViewBag.ListTopic, "--Chọn ParentID--", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Sắp xếp</label>
-                        @Html.EditorFor(model => model.Orders, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Orders, (SelectList)ViewBag.ListOrderTopic, "--Chọn vị trí--", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Orders, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label>Trạng thái</label>
-                        @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Chưa triển khai", Value = "2" }, new SelectListItem { Text = "Triển khai", Value = "1" } }, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>

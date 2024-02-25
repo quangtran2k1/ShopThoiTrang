@@ -36,6 +36,27 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
             return View(list);
         }
 
+        public ActionResult Trash()
+        {
+            var list = db.Orders.Join(db.Users, o => o.UserId, u => u.Id, (o, u) => new OrderUser
+            {
+                Id = o.Id,
+                UserId = o.UserId,
+                Name = o.Name,
+                Phone = o.Phone,
+                Email = o.Email,
+                Note = o.Note,
+                Created_At = o.Created_At,
+                Updated_By = o.Updated_By,
+                Updated_At = o.Updated_At,
+                Status = o.Status,
+                Addr = u.Address
+            }
+            )
+            .Where(m => m.Status == 0).OrderByDescending(m => m.Created_At).ToList();
+            return View(list);
+        }
+
         // GET: Admin/Order/Details/5
         public ActionResult Details(int? id)
         {
@@ -62,30 +83,42 @@ namespace ShopThoiTrang.Areas.Admin.Controllers
             return View(list);
         }
 
-        // GET: Admin/Order/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // POST: Admin/Order/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //Thay đổi trạng thái
+        public ActionResult Status(int id)
         {
             Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
+            int status = (order.Status == 1) ? 2 : 1;
+            order.Status = status;
+            order.Updated_By = int.Parse(Session["UserID"].ToString());
+            order.Updated_At = DateTime.Now;
+            db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        //Xóa Status = 0
+        public ActionResult DelTrash(int id)
+        {
+            Order order = db.Orders.Find(id);
+            order.Status = 0;
+            order.Updated_By = int.Parse(Session["UserID"].ToString());
+            order.Updated_At = DateTime.Now;
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Order");
+        }
+
+        //Khôi phục Status = 2
+        public ActionResult Restore(int id)
+        {
+            Order order = db.Orders.Find(id);
+            order.Status = 2;
+            order.Updated_By = int.Parse(Session["UserID"].ToString());
+            order.Updated_At = DateTime.Now;
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Trash", "Order");
         }
     }
 }

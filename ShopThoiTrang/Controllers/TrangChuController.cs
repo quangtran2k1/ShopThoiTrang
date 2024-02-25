@@ -13,13 +13,14 @@ namespace ShopThoiTrang.Controllers
         // GET: TrangChu
         public ActionResult Index()
         {
-            var listcat = db.Categorys.Where(m => m.Status == 1 && m.ParentId == 0).ToList();
-            return View(listcat);
+            var listPro = db.Products.Where(m => m.Status == 1).OrderByDescending(m => m.Created_At).ToList();
+            ViewBag.listPro = listPro;
+            return View();
         }
 
         public ActionResult Search(string key)
         {
-                var listSP = db.Products.Where(m => m.Status == 1 && (m.Name.Contains(key) || m.Metadesc.Contains(key) || m.Metakey.Contains(key) || m.Detail.Contains(key))).OrderByDescending(m => m.Name);
+                var listSP = db.Products.Where(m => m.Name.Contains(key) || m.Metadesc.Contains(key) || m.Metakey.Contains(key) || m.Detail.Contains(key)).OrderByDescending(m => m.Name);
                 return View("Search", listSP);
         }
 

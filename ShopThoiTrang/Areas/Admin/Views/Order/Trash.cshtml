@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShopThoiTrang.Models.OrderUser>
+
+@{
+    ViewBag.Title = "Trash";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Public/admin/js/sb-admin-2.min.js"></script>
+}
+<div class="card admin__scroll">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">Sản phẩm đã xóa</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Index","Order")" class="btn btn-sm btn-success"><i class="fas fa-arrow-left"></i> Quay về danh sách</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="width:20px;" class="text-center">#</th>
+                    <th style="width:250px">Họ và tên</th>
+                    <th style="width:200px">Địa chỉ</th>
+                    <th style="width:120px">Sđt</th>
+                    <th style="width:250px">Email</th>
+                    <th>Note</th>
+                    <th style="width:130px;" class="text-center">Chức năng</th>
+                    <th style="width:20px;" class="text-center">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input name="checkId" type="checkbox" />
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Addr</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Email</td>
+                        <td>@item.Note</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Restore","Order",new {@id = item.Id})" class="btn btn-sm btn-info"><i class="fas fa-undo"></i></a>
+                        </td>
+                        <td class="text-center">@item.Id</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
